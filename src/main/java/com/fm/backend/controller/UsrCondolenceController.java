@@ -2,10 +2,14 @@ package com.fm.backend.controller;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -44,6 +48,24 @@ public class UsrCondolenceController extends BaseController{
 		Collections.reverse(condolences);
 		
 		return new ResultData("S-1", "조의문 불러오기 완료", "condolences", condolences);
+	}
+	
+	@RequestMapping("/usr/condolence/doAdd")
+	@ResponseBody
+	public ResultData doAdd(@RequestParam Map<String, Object> param, HttpServletRequest req) {
+		if (param.get("writer") == null) {
+			return new ResultData("F-1", "작성자를 입력해주세요.");
+		}
+		
+		if (param.get("password") == null) {
+			return new ResultData("F-1", "비밀번호를 입력해주세요.");
+		}
+		
+		if (param.get("body") == null) {
+			return new ResultData("F-1", "조의문을 입력해주세요.");
+		}
+
+		return condolenceService.addCondolence(param);
 	}
 	
 }

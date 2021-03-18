@@ -12,16 +12,4 @@
 		AND boardId = #{boardId}
 	</select>
 
-	<insert id="addCondolence" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO Condolence
-		SET regDate = NOW(),
-		updateDate = NOW(),
-		writer = 
-		#{ writer },
-		password =
-		#{ password },
-		`body` = 
-		#{ body }
-	</insert>
-
 </mapper>
