@@ -27,6 +27,13 @@ public class CondolenceService {
 		int id = Util.getAsInt(param.get("id"), 0);
 
 		return new ResultData("S-1", "조의문 작성 완료.", "id", id);
+	}
+
+	public ResultData getCondolenceById(int id) {
+		
+		Condolence condolence = condolenceDao.getCondolenceById(id);
+		
+		return new ResultData("S-1", "조의문 불러오기 완료.", "condolence", condolence);
 	}	
 
 }

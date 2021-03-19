@@ -67,5 +67,17 @@ public class UsrCondolenceController extends BaseController{
 
 		return condolenceService.addCondolence(param);
 	}
+
+	
+	@RequestMapping("/usr/condolence/showCondolence")
+	@ResponseBody
+	public ResultData showCondolence(@RequestParam("id") int id, HttpServletRequest req) {		
+		if(id == 0) {
+			return new ResultData("F-1", "존재하지 않는 조의문 번호입니다.", "id", id);
+		}
+		
+		return condolenceService.getCondolenceById(id);
+	}
+	
 	
 }

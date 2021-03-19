@@ -11,7 +11,6 @@ public class Condolence {
 	String regDate;
 	String updateDate;
 	String body;
-	@JsonIgnore
 	String password;
 	int boardId;	
 	String writer;

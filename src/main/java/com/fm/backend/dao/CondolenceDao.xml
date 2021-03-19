@@ -11,6 +11,13 @@
 		WHERE 1
 		AND boardId = #{boardId}
 	</select>
+	
+	<select id="getCondolenceById" resultType="Condolence">
+		SELECT C.*
+		FROM Condolence as C
+		WHERE 1
+		AND id = #{id}
+	</select>
 
 	<insert id="addCondolence" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO Condolence
