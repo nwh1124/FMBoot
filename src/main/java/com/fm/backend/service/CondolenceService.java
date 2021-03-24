@@ -34,6 +34,19 @@ public class CondolenceService {
 		Condolence condolence = condolenceDao.getCondolenceById(id);
 		
 		return new ResultData("S-1", "조의문 불러오기 완료.", "condolence", condolence);
+	}
+
+	public ResultData modifyCondolence(Integer id, String writer, String body) {
+		
+		condolenceDao.modifyCondolence(id, writer, body);
+		
+		return new ResultData("S-1", "조의문 수정 완료.", "id", id);
+	}
+
+	public ResultData deleteCondolence(Integer id) {
+		condolenceDao.deleteCondolence(id);
+		
+		return new ResultData("S-1", "조의문 삭제 완료.", "id", id);
 	}	
 
 }

@@ -14,5 +14,7 @@ public interface CondolenceDao {
 	public List<Condolence> getForPrintCondolences(int boardId);
 	public void addCondolence(Map<String, Object> param);
 	public Condolence getCondolenceById(int id);
+	public void modifyCondolence(Integer id, String writer, String body);
+	public void deleteCondolence(Integer id);
 
 }

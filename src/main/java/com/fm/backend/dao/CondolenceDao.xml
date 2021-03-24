@@ -30,5 +30,23 @@
 		`body` = 
 		#{ body }
 	</insert>
+	
+	<update id="modifyCondolence">
+		UPDATE Condolence
+		set updateDate = NOW(),
+		writer = 
+		#{ writer },
+		body = 
+		#{ body }
+		WHERE 1
+		AND id = #{ id }
+	</update>
+	
+	<delete id="deleteCondolence">
+		DELETE FROM Condolence
+		WHERE 1
+		AND id = 
+		#{ id }
+	</delete>
 
 </mapper>

@@ -52,7 +52,7 @@ public class UsrCondolenceController extends BaseController{
 	
 	@RequestMapping("/usr/condolence/doAdd")
 	@ResponseBody
-	public ResultData doAdd(@RequestParam Map<String, Object> param, HttpServletRequest req) {
+	public ResultData doAdd(@RequestParam Map<String, Object> param) {
 		if (param.get("writer") == null) {
 			return new ResultData("F-1", "작성자를 입력해주세요.");
 		}
@@ -67,11 +67,36 @@ public class UsrCondolenceController extends BaseController{
 
 		return condolenceService.addCondolence(param);
 	}
+	
+	@RequestMapping("/usr/condolence/doModify")
+	@ResponseBody
+	public ResultData doModify(@RequestParam("id") Integer id, 
+			@RequestParam("writer") String writer, @RequestParam("body") String body) {
+		if(id == null) {
+			return new ResultData("F-1", "존재하지 않는 조의문입니다.");
+		}
+		
+		if(writer == null && body == null) {
+			return new ResultData("F-1", "수정할 내용이 없습니다.");
+		}
+
+		return condolenceService.modifyCondolence(id, writer, body);
+	}
+	
+	@RequestMapping("/usr/condolence/doDelete")
+	@ResponseBody
+	public ResultData doDelete(@RequestParam("id") Integer id) {
+		if(id == null) {
+			return new ResultData("F-1", "존재하지 않는 조의문입니다.");
+		}
+		
+		return condolenceService.deleteCondolence(id);
+	}
 
 	
 	@RequestMapping("/usr/condolence/showCondolence")
 	@ResponseBody
-	public ResultData showCondolence(@RequestParam("id") int id, HttpServletRequest req) {		
+	public ResultData showCondolence(@RequestParam("id") int id) {		
 		if(id == 0) {
 			return new ResultData("F-1", "존재하지 않는 조의문 번호입니다.", "id", id);
 		}
