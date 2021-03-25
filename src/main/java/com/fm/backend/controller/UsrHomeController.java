@@ -14,7 +14,9 @@ public class UsrHomeController extends BaseController{
 
 	@GetMapping("/usr/home/doSendSms")
 	@ResponseBody
-	public ResultData doSendSms(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("msg") String msg) {		
+	public ResultData doSendSms(@RequestParam("from") String from, @RequestParam("to") String to, @RequestParam("msg") String msg) {
+//		강사님 번호 01088245558
+		
 		Aligo__send__ResponseBody rb = Util.sendSms(from, to, msg);
 
 		return new ResultData("S-1", "발송되었습니다.", "from", from, "to", to, "msg", msg, "rb", rb);
